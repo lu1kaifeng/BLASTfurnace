@@ -27,9 +27,7 @@ public class Init {
     }
     @PostConstruct
     public void importData() throws FileNotFoundException {
-
         geneList.addAll(new Gson().fromJson(new FileReader(new File(Objects.requireNonNull(env.getProperty("gene.data.json"))))
                 ,new TypeToken<ArrayList<Gene>>(){}.getType()));
-
     }
 }
