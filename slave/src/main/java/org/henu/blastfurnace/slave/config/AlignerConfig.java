@@ -35,8 +35,8 @@ public class AlignerConfig {
                 SubstitutionMatrix<NucleotideCompound> matrix = SubstitutionMatrixHelper.getNuc4_4();
 
                 SimpleGapPenalty gapP = new SimpleGapPenalty();
-                gapP.setOpenPenalty((short)5);
-                gapP.setExtensionPenalty((short)2);
+                gapP.setOpenPenalty(alignmentRequest.getOpenPenalty());
+                gapP.setExtensionPenalty(alignmentRequest.getExtensionPenalty());
 
                 SequencePair<DNASequence, NucleotideCompound> psa =
                         Alignments.getPairwiseAlignment(query, target,
@@ -45,7 +45,8 @@ public class AlignerConfig {
                 alignmentEntry.setNumts_ID(g.getNumts_ID());
                 alignmentEntry.setAlignedSequenceList(psa.getAlignedSequences());
                 alignmentEntry.setPercentageOfIdentity(psa.getPercentageOfIdentity(false));
-                if(psa.getPercentageOfIdentity(false) > 0.8d) alignmentEntryList.add(alignmentEntry);
+                if (psa.getPercentageOfIdentity(false) > alignmentRequest.getLowestPercent())
+                    alignmentEntryList.add(alignmentEntry);
             }
             return alignmentEntryList;
         };

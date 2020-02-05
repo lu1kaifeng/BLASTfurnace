@@ -3,12 +3,14 @@ package org.henu.blastfurnace.master.config;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
-import org.biojava.nbio.structure.align.pairwise.AlignmentResult;
 import org.henu.blastfurnace.master.client.Slave;
 import org.henu.blastfurnace.master.model.AlignmentEntry;
 import org.henu.blastfurnace.master.model.AlignmentRequest;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
