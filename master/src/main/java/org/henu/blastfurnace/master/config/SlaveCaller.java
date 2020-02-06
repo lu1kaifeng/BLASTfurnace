@@ -1,8 +1,5 @@
 package org.henu.blastfurnace.master.config;
 
-import feign.Feign;
-import feign.gson.GsonDecoder;
-import feign.gson.GsonEncoder;
 import org.henu.blastfurnace.master.client.Slave;
 import org.henu.blastfurnace.master.model.AlignmentEntry;
 import org.henu.blastfurnace.master.model.AlignmentRequest;
@@ -17,19 +14,16 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class SlaveCaller {
-    private Map<Slave,ExecutorService> slaves = new HashMap<>();
+    private Map<Slave, ExecutorService> slaves = new HashMap<>();
 
-    public SlaveCaller(String[] slaveURIs) {
-        for(String url : slaveURIs){
-            slaves.put(Feign.builder()
-            .encoder(new GsonEncoder())
-            .decoder(new GsonDecoder())
-                    .target(Slave.class,url), Executors.newCachedThreadPool());
+    public SlaveCaller(String[] slaveURIs, String path) {
+        for (String uri : slaveURIs) {
+            slaves.put(new Slave(uri, path), Executors.newCachedThreadPool());
         }
     }
 
-    private Future<List<AlignmentEntry>> call(AlignmentRequest request, Map.Entry<Slave,ExecutorService> slave){
-        return slave.getValue().submit(()-> slave.getKey().align(request));
+    private Future<List<AlignmentEntry>> call(AlignmentRequest request, Map.Entry<Slave, ExecutorService> slave) {
+        return slave.getValue().submit(() -> slave.getKey().align(request));
     }
 
     public List<AlignmentEntry> callAll(AlignmentRequest request) throws ExecutionException, InterruptedException {

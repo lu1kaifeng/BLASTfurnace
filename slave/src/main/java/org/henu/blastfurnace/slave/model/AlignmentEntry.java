@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlignmentEntry implements Serializable {
-    private Double PercentageOfIdentity;
-    private String Numts_ID;
+    private Double percentageOfIdentity;
+    private String numtsID;
     private List<AlignedSequence> alignedSequenceList;
 
     public List<AlignedSequence> getAlignedSequenceList() {
@@ -18,81 +18,82 @@ public class AlignmentEntry implements Serializable {
 
     public void setAlignedSequenceList(List<org.biojava.nbio.core.alignment.template.AlignedSequence<DNASequence, NucleotideCompound>> alignedSequenceList) {
         this.alignedSequenceList = new ArrayList<>();
-        for(org.biojava.nbio.core.alignment.template.AlignedSequence<DNASequence, NucleotideCompound> Seq: alignedSequenceList){
+        for (org.biojava.nbio.core.alignment.template.AlignedSequence<DNASequence, NucleotideCompound> Seq : alignedSequenceList) {
             this.alignedSequenceList.add(AlignedSequence.ConvertForDisplay(Seq));
         }
     }
 
     public Double getPercentageOfIdentity() {
-        return PercentageOfIdentity;
+        return percentageOfIdentity;
     }
 
     public void setPercentageOfIdentity(Double percentageOfIdentity) {
-        PercentageOfIdentity = percentageOfIdentity;
+        this.percentageOfIdentity = percentageOfIdentity;
     }
 
-    public String getNumts_ID() {
-        return Numts_ID;
+    public String getNumtsID() {
+        return numtsID;
     }
 
-    public void setNumts_ID(String numts_ID) {
-        Numts_ID = numts_ID;
+    public void setNumtsID(String numtsID) {
+        this.numtsID = numtsID;
     }
 
     public static class AlignedSequence implements Serializable {
-        public static AlignedSequence ConvertForDisplay(org.biojava.nbio.core.alignment.template.AlignedSequence<DNASequence, NucleotideCompound> Seq){
+        private String sequence;
+        private Long starts;
+        private Long ends;
+        private Double coverage;
+        private Long numGaps;
+
+        public static AlignedSequence ConvertForDisplay(org.biojava.nbio.core.alignment.template.AlignedSequence<DNASequence, NucleotideCompound> Seq) {
             AlignedSequence alignedSequence = new AlignedSequence();
-            alignedSequence.Sequence = Seq.getSequenceAsString();
-            alignedSequence.Starts = Seq.getStart().getPosition().longValue();
-            alignedSequence.Ends = Seq.getEnd().getPosition().longValue();
+            alignedSequence.sequence = Seq.getSequenceAsString();
+            alignedSequence.starts = Seq.getStart().getPosition().longValue();
+            alignedSequence.ends = Seq.getEnd().getPosition().longValue();
             alignedSequence.setCoverage(Seq.getCoverage());
-            alignedSequence.setNumGaps((long)Seq.getNumGaps());
+            alignedSequence.setNumGaps((long) Seq.getNumGaps());
             return alignedSequence;
         }
-        private String Sequence;
-        private Long Starts;
-        private Long Ends;
-        private Double Coverage;
-        private Long NumGaps;
 
         public String getSequence() {
-            return Sequence;
+            return sequence;
         }
 
         public void setSequence(String sequence) {
-            Sequence = sequence;
+            this.sequence = sequence;
         }
 
         public Long getStarts() {
-            return Starts;
+            return starts;
         }
 
         public void setStarts(Long starts) {
-            Starts = starts;
+            this.starts = starts;
         }
 
         public Long getEnds() {
-            return Ends;
+            return ends;
         }
 
         public void setEnds(Long ends) {
-            Ends = ends;
+            this.ends = ends;
         }
 
         public Double getCoverage() {
-            return Coverage;
+            return coverage;
         }
 
         public void setCoverage(Double coverage) {
-            Coverage = coverage;
+            this.coverage = coverage;
         }
 
         public Long getNumGaps() {
-            return NumGaps;
+            return numGaps;
         }
 
         public void setNumGaps(Long numGaps) {
-            NumGaps = numGaps;
+            this.numGaps = numGaps;
         }
     }
 }

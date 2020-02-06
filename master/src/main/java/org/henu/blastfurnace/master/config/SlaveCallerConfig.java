@@ -20,6 +20,6 @@ public class SlaveCallerConfig {
     @Bean
     @Scope(value = ConfigurableBeanFactory.SCOPE_SINGLETON)
     public SlaveCaller slaveCaller(){
-        return new SlaveCaller(Objects.requireNonNull(env.getProperty("slave.hosts", String[].class)));
+        return new SlaveCaller(Objects.requireNonNull(env.getProperty("slave.hosts", String[].class)), Objects.requireNonNull(env.getProperty("slave.path")));
     }
 }

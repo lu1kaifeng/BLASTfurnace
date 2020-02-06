@@ -42,7 +42,7 @@ public class AlignerConfig {
                         Alignments.getPairwiseAlignment(query, target,
                                 Alignments.PairwiseSequenceAlignerType.LOCAL, gapP, matrix);
                 AlignmentEntry alignmentEntry = new AlignmentEntry();
-                alignmentEntry.setNumts_ID(g.getNumts_ID());
+                alignmentEntry.setNumtsID(g.getNumts_ID());
                 alignmentEntry.setAlignedSequenceList(psa.getAlignedSequences());
                 alignmentEntry.setPercentageOfIdentity(psa.getPercentageOfIdentity(false));
                 if (psa.getPercentageOfIdentity(false) > alignmentRequest.getLowestPercent())
