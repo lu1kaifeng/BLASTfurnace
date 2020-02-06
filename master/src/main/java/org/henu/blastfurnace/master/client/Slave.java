@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 public class Slave {
     private String url;
@@ -23,7 +24,9 @@ public class Slave {
 
     public Slave(String host, String path) {
         this.url = host + path;
-        this.client = new OkHttpClient();
+        this.client = new OkHttpClient.Builder()
+                .readTimeout(16, TimeUnit.MINUTES)
+                .writeTimeout(16, TimeUnit.MINUTES).build();
     }
 
     public List<AlignmentEntry> align(AlignmentRequest request) throws IOException {
