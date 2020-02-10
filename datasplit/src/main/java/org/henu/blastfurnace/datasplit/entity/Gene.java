@@ -1,20 +1,15 @@
 package org.henu.blastfurnace.datasplit.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "numtsinfo")
+@Table(name = "nCoV")
 public class Gene implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String Numts_ID;
-    private String strand;
-    private String chr;
-    private Long starts;
-    private Long ends;
+    private String geneID;
     private String sub;
     private Integer subLen;
 
@@ -26,44 +21,12 @@ public class Gene implements Serializable {
         this.id = id;
     }
 
-    public String getNumts_ID() {
-        return Numts_ID;
+    public String getGeneID() {
+        return geneID;
     }
 
-    public void setNumts_ID(String numts_ID) {
-        Numts_ID = numts_ID;
-    }
-
-    public String getStrand() {
-        return strand;
-    }
-
-    public void setStrand(String strand) {
-        this.strand = strand;
-    }
-
-    public String getChr() {
-        return chr;
-    }
-
-    public void setChr(String chr) {
-        this.chr = chr;
-    }
-
-    public Long getStarts() {
-        return starts;
-    }
-
-    public void setStarts(Long starts) {
-        this.starts = starts;
-    }
-
-    public Long getEnds() {
-        return ends;
-    }
-
-    public void setEnds(Long ends) {
-        this.ends = ends;
+    public void setGeneID(String numtsID) {
+        this.geneID = numtsID;
     }
 
     public String getSub() {

@@ -1,8 +1,6 @@
 package org.henu.blastfurnace.slave.service;
 
-import ch.qos.logback.core.joran.spi.InterpretationContext;
 import org.biojava.nbio.core.exceptions.CompoundNotFoundException;
-import org.biojava.nbio.structure.align.pairwise.AlignmentResult;
 import org.henu.blastfurnace.slave.config.Aligner;
 import org.henu.blastfurnace.slave.model.AlignmentEntry;
 import org.henu.blastfurnace.slave.model.AlignmentRequest;
@@ -12,9 +10,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
 import java.util.*;
-import java.util.concurrent.*;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ForkJoinTask;
+import java.util.concurrent.RecursiveTask;
 
 @Service
 public class ConcurrentAlignmentService {

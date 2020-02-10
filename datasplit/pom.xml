@@ -43,6 +43,13 @@
             <artifactId>biojava-structure</artifactId>
             <version>5.3.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.biojava/sequencing -->
+        <dependency>
+            <groupId>org.biojava</groupId>
+            <artifactId>sequencing</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
