@@ -9,7 +9,7 @@ import java.util.List;
 
 public class AlignmentEntry implements Serializable {
     private Double percentageOfIdentity;
-    private String numtsID;
+    private String geneID;
     private List<AlignedSequence> alignedSequenceList;
 
     public List<AlignedSequence> getAlignedSequenceList() {
@@ -31,12 +31,12 @@ public class AlignmentEntry implements Serializable {
         this.percentageOfIdentity = percentageOfIdentity;
     }
 
-    public String getNumtsID() {
-        return numtsID;
+    public String getGeneID() {
+        return geneID;
     }
 
-    public void setNumtsID(String numtsID) {
-        this.numtsID = numtsID;
+    public void setGeneID(String geneID) {
+        this.geneID = geneID;
     }
 
     public static class AlignedSequence implements Serializable {
